@@ -18,7 +18,7 @@ def update_status(ticket_id, new_status):
 
 
 def display_tickets(status):
-    if status:
+    if status != 'null':
             filtered_tickets = {ticket_id: ticket_info for ticket_id, ticket_info in service_tickets.items() if ticket_info["Status"].lower() == status}
             if filtered_tickets:        # Making sure that the dictionary isn't empty and DOES contain something with the searched status. ^^
                  print("Tickets with status '{}':".format(status))
@@ -30,7 +30,7 @@ def display_tickets(status):
                 print("No tickets found with status '{}'.".format(status))
             print("--------------------")
 
-    elif status == 'none':
+    else:
             print("\nAll Tickets:")
             for ticket_id, ticket_info in service_tickets.items():
                 print("--------------------")
@@ -77,10 +77,13 @@ while True:
                         filter_choice = input("Would you like to filter by status? Y or N. ").lower()
                         if filter_choice == 'y':
                             filter_option = input("What status would you like to filter by? ").lower()
-                            display_tickets(filter_option.lower())
+                            if filter_option != 'null':
+                                display_tickets(filter_option.lower())
+                            else:
+                                print("You cannot sort by null.")
                             break
                         else:
-                            display_tickets('none')
+                            display_tickets('null')
                             break
                     except ValueError:
                         print("Please enter a valid choice. ")
