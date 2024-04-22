@@ -1,5 +1,8 @@
-service_tickets = {}
-idtotal = 0
+service_tickets = {
+    "1": {"Customer": "Alice", "Issue": "Login problem", "Status": "open"},
+    "2": {"Customer": "Bob", "Issue": "Payment issue", "Status": "closed"}
+}
+idtotal = len(service_tickets)
 
 
 def open_ticket(ticket_id, customer_name, issue_description):
